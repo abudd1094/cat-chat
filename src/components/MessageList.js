@@ -20,18 +20,6 @@ const MessageList = ({messageList, getMessages}) => {
       loading: 'false'
     });
   }, []); 
-
-  const getData = ({messageList, getMessages}) => {
-    try {
-      // const res = await axios.get('http://5ce29cc3e3ced20014d35c09.mockapi.io/catchat/api/messages');
-      
-      // this.setState({ data: res.data, loading: false })
-      // console.log(this.state)
-      getMessages() // action
-    } catch (error) {
-      console.log(error);
-    }
-  }
   
   return (
     <div className="container">
