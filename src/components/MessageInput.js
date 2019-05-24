@@ -26,13 +26,13 @@ const MessageInput = () => {
   }
   
   return (
-    <div className="container">
+    <div className="container" style={{ marginTop:'-2px' }}>
       <form action="" onSubmit={e => {onSubmit(e)}}>
         <textarea 
           name="text" 
           value={text} 
           cols="1" 
-          rows="3" 
+          rows="4" 
           className="input" 
           onChange={e => onChange(e)}
           placeholder="enter text here"
