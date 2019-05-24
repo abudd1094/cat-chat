@@ -1,0 +1,24 @@
+.app {
+  padding: 20px 10%;
+}
+
+/* ----------------------------------------------- MessageList ----------------------------------------------- */
+.msg-list {
+  border: 2px solid black;
+}
+
+.msg {
+  margin: 10px;
+  padding: 5px 30px;
+  border: 1px solid blue;
+  width: 50%;
+  border-radius: 50px;
+}
+
+.msg-sender {
+  color: grey;
+}
+
+.msg-text {
+  
+}
