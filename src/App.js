@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ConsoleLeft from './components/ConsoleLeft';
-import ConsoleRight from './components/ConsoleRight';
+import Console from './components/Console';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -13,8 +12,7 @@ class App extends Component {
         <div className="app">
           <h1 className="ui center aligned header">CatChat</h1>
           <div className="horiz-flex-container">
-            <ConsoleLeft />
-            <ConsoleRight />
+            <Console />
           </div>
         </div>
       </Provider>

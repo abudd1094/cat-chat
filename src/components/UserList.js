@@ -24,7 +24,7 @@ const UserList = ({userList, getUsers}) => {
       <h4 className="ui center aligned header" style={{ margin:'5px' }}>Users</h4>
       {userList.loading === true ? 'loading...' : userList.users.map((user, index) => {
         return (
-          <div key={index} className="username">
+          <div key={index} className="username"> 
             <div>{user.username}</div>
           </div>
         )
