@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { sendMessage } from '../actions/messageInput';
 
-const MessageInput = () => {
+const MessageInput = ({sendMessage}) => {
   const [formData, setFormData] = useState({
     sender: 'johndoe',
     receiver: 'janedoe',
@@ -17,12 +19,7 @@ const MessageInput = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-    const res = await axios.post('http://5ce29cc3e3ced20014d35c09.mockapi.io/catchat/api/messages', formData, config)
+    sendMessage(formData)
   }
   
   return (
@@ -43,4 +40,12 @@ const MessageInput = () => {
   )
 }
 
-export default MessageInput;
+MessageInput.propTypes = {
+  sendMessage: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  messageInput: state.messageInput
+});
+
+export default connect(mapStateToProps, { sendMessage })(MessageInput);
