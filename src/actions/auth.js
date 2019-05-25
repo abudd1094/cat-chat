@@ -51,7 +51,7 @@ export const login = (username, password) => async dispatch => {
     const errors = err.response.data.errors; // response returns an errors array
 
     if(errors) {
-      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+      console.log(errors)
     }
 
     dispatch({
@@ -62,6 +62,5 @@ export const login = (username, password) => async dispatch => {
 
 // Logout / Clear Profile
 export const logout = () => dispatch => {
-  dispatch({ type: CLEAR_PROFILE })
   dispatch({ type: LOGOUT })
 }
