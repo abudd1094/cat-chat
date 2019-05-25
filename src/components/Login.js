@@ -3,7 +3,6 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../actions/auth';
-// import axios from 'axios';
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({ // hook syntax
@@ -20,10 +19,10 @@ const Login = ({ login, isAuthenticated }) => {
     login(username, password)
   }  
 
-  // Redirect if logged in
-  // if(isAuthenticated) {
-  //   return <Redirect to="/dashboard" />;
-  // }
+// Redirect if logged in
+  if(isAuthenticated) {
+    return <Redirect to="/console" />;
+  }
 
   return (
     <Fragment>

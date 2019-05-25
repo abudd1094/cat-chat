@@ -20,7 +20,7 @@ const MessageList = ({messageList, messageInput, getMessages}) => {
   }, [messageInput]); 
   
   return (
-    <div className="container">
+    <div className="container msg-list">
       {messageList.loading === true ? 'loading...' : messageList.messages.map((msg, index) => {
         return (
           <div key={index} className="msg">
