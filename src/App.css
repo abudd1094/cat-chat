@@ -1,3 +1,4 @@
+/* ---------------------------------------------- General & Layout ---------------------------------------------- */
 .app {
   padding: 20px 10%;
 }
@@ -10,6 +11,21 @@
   width: 100%;
   display: block;
   margin: auto;
+}
+
+.horiz-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  border: 2px solid black;
+}
+
+.console-l {
+  flex-grow: 1;
+}
+
+.console-r {
+  flex-grow: 5;
 }
 
 
@@ -49,4 +65,10 @@
   margin: auto;
   padding: 5px;
   width: 100%;
+}
+
+/* ----------------------------------------------- UserList ----------------------------------------------- */
+.username {
+  margin: 5px 15px;
+  color: green;
 }

@@ -21,7 +21,7 @@ const MessageList = ({messageList, messageInput, getMessages}) => {
   
   return (
     <div className="container">
-      {messageList.loading === true ? 'loading' : messageList.messages.map((msg, index) => {
+      {messageList.loading === true ? 'loading...' : messageList.messages.map((msg, index) => {
         return (
           <div key={index} className="msg">
             <div className="msg-sender">{msg.sender}</div>
