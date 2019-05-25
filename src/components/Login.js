@@ -3,9 +3,10 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../actions/auth';
+import axios from 'axios';
 
 const Login = ({ login, isAuthenticated }) => {
-  const [formData, setFormData] = useState({ // hook syntax
+  const [formData, setFormData] = useState({ 
     username: '',
     password: ''
   });
@@ -16,20 +17,31 @@ const Login = ({ login, isAuthenticated }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    login(username, password)
+    const user = await axios.get('http://5ce29cc3e3ced20014d35c09.mockapi.io/catchat/api/user', {
+      params: {
+        username: formData.username,
+        password: formData.password
+      }
+    });
+
+    if (user) {
+      login(username, password)
+      localStorage.setItem('username', username); // set the token in the state once logged in
+    } else {
+      return "User not found!"
+    }
   }  
 
-// Redirect if logged in
+  // Redirect if logged in
   if(isAuthenticated) {
     return <Redirect to="/console" />;
   }
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Sign In</h1>
-      <p className="lead"><i className="fas fa-user"></i> Sign Into Your Account</p>
-      <form className="form" onSubmit={e => onSubmit(e)}>
-        <div className="form-group">
+      <h1 className="">Sign In</h1>
+      <form onSubmit={e => onSubmit(e)}>
+        <div>
           <input 
             type="text" 
             placeholder="Username" 
@@ -39,7 +51,7 @@ const Login = ({ login, isAuthenticated }) => {
             required
           />
         </div>
-        <div className="form-group">
+        <div>
           <input
             type="password"
             placeholder="Password"
@@ -49,7 +61,7 @@ const Login = ({ login, isAuthenticated }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Login" />
+        <input type="submit" className="btn" value="Login" />
       </form>
     </Fragment>
   )

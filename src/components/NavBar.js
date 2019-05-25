@@ -1,10 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../actions/auth';
 
 const Navbar = () => {
+  const [navData, setNavData] = useState({ 
+    loggedInUser: localStorage.getItem('username')
+  });
+
+  useEffect(() => {
+    setNavData({
+      loggedInUser: navData.loggedInUser,
+      loading: 'false'
+    });
+  }, [navData.loggedInUser]); 
+  
   const onLogout = e => {
     e.preventDefault();
     logout();
@@ -20,8 +31,12 @@ const Navbar = () => {
   
   return ( // JSX below says if we are not loading, look at isAuthenticated and returns a set of links
     <nav className="navbar">
-      {/* { !loading && (<Fragment>{ isAuthenticated ? authLinks : guestLinks }</Fragment>) }  */}
-      {guestLinks}
+      <div className="navbar-l">
+        {navData.loggedInUser}
+      </div>
+      <div className="navbar-r">
+        {guestLinks}
+      </div>
     </nav>
   )
 }

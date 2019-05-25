@@ -31,17 +31,19 @@
   flex-grow: 5;
 }
 
+/* ------------------------------------------------- Navigation ----------------------------------------------- */
+
 .navbar {
   width: 100%;
   padding: 10px 20px;
   background-color: grey;
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav-link {
   color: white;
 }
-
 
 /* ----------------------------------------------- MessageList ----------------------------------------------- */
 
