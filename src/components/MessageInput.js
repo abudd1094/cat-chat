@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { sendMessage } from '../actions/messageInput';
 
+
 const MessageInput = ({sendMessage}) => {
   const [formData, setFormData] = useState({
     sender: 'johndoe',
@@ -23,7 +24,7 @@ const MessageInput = ({sendMessage}) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    sendMessage(formData);
+    sendMessage(formData)
     formData.id += 1
   }
   
@@ -51,7 +52,8 @@ MessageInput.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  messageInput: state.messageInput
+  messageInput: state.messageInput,
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, { sendMessage })(MessageInput);

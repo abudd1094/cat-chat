@@ -5,8 +5,8 @@ import userList from './userList';
 import auth from './auth';
 
 export default combineReducers({
-  messageList,
-  messageInput,
+  auth,
   userList,
-  auth
+  messageInput, 
+  messageList,
 });

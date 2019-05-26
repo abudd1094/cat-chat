@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { getMessages } from '../actions/messageList';
 
 
-const MessageList = ({messageList, messageInput, getMessages}) => {
+const MessageList = ({ userList, auth, messageList, messageInput, getMessages }) => {
   const [formData, setFormData] = useState({
     messages: '',
+    sender: auth.payload,
     loading: 'true'
   });
 
@@ -17,11 +18,11 @@ const MessageList = ({messageList, messageInput, getMessages}) => {
       messages: messageList.messages,
       loading: 'false'
     });
-  }, [messageInput]); 
-  
+  }, [messageInput, userList]); 
+
   return (
     <div className="container msg-list">
-      {messageList.loading === true ? 'loading...' : messageList.messages.map((msg, index) => {
+      {messageList.loading === true ? 'loading...' : messageList.messages.filter(msg => (msg.receiver === userList.receiver)).map((msg, index) => {
         return (
           <div key={index} className="msg">
             <div className="msg-sender">{msg.sender}</div>
@@ -39,7 +40,9 @@ MessageList.propTypes = {
 
 const mapStateToProps = state => ({
   messageList: state.messageList,
-  messageInput: state.messageInput
+  messageInput: state.messageInput,
+  auth: state.auth,
+  userList: state.userList
 });
 
 export default connect(mapStateToProps, { getMessages })(MessageList);

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getUsers } from '../actions/userList'
+import { setReceiver, getUsers } from '../actions/userList'
 
 
-const UserList = ({userList, getUsers}) => {
+const UserList = ({userList, getUsers, setReceiver}) => {
   const [formData, setFormData] = useState({
     users: '',
+    receiver: '',
     loading: 'true'
   });
   
@@ -17,7 +18,7 @@ const UserList = ({userList, getUsers}) => {
       users: userList.users,
       loading: 'false'
     });
-  }, []); 
+  }, []);
 
   return (
     <div>
@@ -25,7 +26,7 @@ const UserList = ({userList, getUsers}) => {
       {userList.loading === true ? 'loading...' : userList.users.map((user, index) => {
         return (
           <div key={index} className="username"> 
-            <div>{user.username}</div>
+            <button onClick={() => setReceiver(user.username)}>{user.username}</button>
           </div>
         )
       })}
@@ -35,10 +36,11 @@ const UserList = ({userList, getUsers}) => {
 
 UserList.propTypes = {
   getUsers: PropTypes.func.isRequired,
+  setReceiver: PropTypes.func
 };
 
 const mapStateToProps = state => ({
   userList: state.userList
 });
 
-export default connect(mapStateToProps, { getUsers })(UserList);
+export default connect(mapStateToProps, { getUsers, setReceiver })(UserList);

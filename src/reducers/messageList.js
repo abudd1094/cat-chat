@@ -5,6 +5,8 @@ import {
 
 const initialState = {
   messages: null,
+  sender: null,
+  receiver: '',
   loading: true,
   error: {}
 }

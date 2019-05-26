@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../actions/auth';
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, payload }, logout }) => {
   const onLogout = e => {
     e.preventDefault();
     logout();
@@ -17,11 +17,15 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const loginButton = (
     <Link to="/login" className="nav-link">Login</Link>
   );
+
+  const loggedInUser = (
+    <div>Logged in as:  {payload}</div>
+  )
   
   return ( // JSX below says if we are not loading, look at isAuthenticated and returns a set of links
     <nav className="navbar">
       <div className="navbar-l">
-
+        { isAuthenticated ? loggedInUser : '' }
       </div>
       <div className="navbar-r">
         { isAuthenticated ? logoutButton : loginButton }
@@ -32,7 +36,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
