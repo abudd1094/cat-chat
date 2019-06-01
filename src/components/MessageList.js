@@ -22,7 +22,9 @@ const MessageList = ({ userList, auth, messageList, messageInput, getMessages })
 
   return (
     <div className="container msg-list">
-      {messageList.loading === true ? 'loading...' : messageList.messages.filter(msg => (msg.receiver === userList.receiver)).map((msg, index) => {
+      {messageList.loading === true ? 'loading...' : messageList.messages.filter(msg => {
+          return (msg.receiver === auth.payload || msg.receiver === userList.receiver) && (msg.sender === auth.payload || msg.sender === userList.receiver)
+      }).map((msg, index) => {
         return (
           <div key={index} className="msg">
             <div className="msg-sender">{msg.sender}</div>

@@ -7,11 +7,7 @@ import {
 // Get all messages
 export const getMessages = () => async dispatch => {
   try {
-    const res = await axios.get('http://5ce29cc3e3ced20014d35c09.mockapi.io/catchat/api/messages', {
-      params: {
-        sender: 'janedoe'
-      }
-    });
+    const res = await axios.get('http://5ce29cc3e3ced20014d35c09.mockapi.io/catchat/api/messages');
 
     console.log(res.data)
 
